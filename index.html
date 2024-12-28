@@ -64,7 +64,7 @@
                 alert("The code should be up to 10 characters long.");
                 return;
             }
-            emailjs.send("PineappleTaggers", "template_2ntzpfd", {
+            emailjs.send("PineappleTaggers", "template_0dv5v2v", {
                 join_code: joinCode
             })
             .then(function(response) {
@@ -80,7 +80,7 @@
         <form onsubmit="sendEmail(event)">
             <div class="form-group">
                 <label for="join-code">Code to join:</label>
-                <input type="text" id="join-code" name="join-code" maxlength="10">
+                <input type="text" id="join-code" name="join-code" maxlength="10" required>
             </div>
             <div class="form-group">
                 <button type="submit">Enter</button>
