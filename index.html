@@ -55,7 +55,7 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("ekV4UL8__pfj7PGdGm8zo"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+            emailjs.init("XcbwBtiWND2Mqj5PJ"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
         })();
         function sendEmail(event) {
             event.preventDefault();
@@ -64,7 +64,7 @@
                 alert("The code should be up to 10 characters long.");
                 return;
             }
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            emailjs.send("PineappleTaggers", "template_2ntzpfd", {
                 join_code: joinCode
             })
             .then(function(response) {
