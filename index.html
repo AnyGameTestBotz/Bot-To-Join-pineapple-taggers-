@@ -23,6 +23,7 @@
         .form-group {
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
         }
         .form-group label {
             margin-right: 10px;
@@ -34,14 +35,58 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+        .form-group button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #007bff;
+        }
     </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("YOUR_USER_ID"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+        })();
+        function sendEmail(event) {
+            event.preventDefault();
+            const joinCode = document.getElementById('join-code').value;
+            if(joinCode.length > 10) {
+                alert("The code should be up to 10 characters long.");
+                return;
+            }
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                join_code: joinCode
+            })
+            .then(function(response) {
+                document.getElementById('message').textContent = "Done! It May Take Up To 20 Minutes.";
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="form-group">
-            <label for="join-code">Code to join:</label>
-            <input type="text" id="join-code" name="join-code" maxlength="10">
-        </div>
+        <form onsubmit="sendEmail(event)">
+            <div class="form-group">
+                <label for="join-code">Code to join:</label>
+                <input type="text" id="join-code" name="join-code" maxlength="10">
+            </div>
+            <div class="form-group">
+                <button type="submit">Enter</button>
+            </div>
+        </form>
+        <div id="message" class="message"></div>
     </div>
 </body>
 </html>
